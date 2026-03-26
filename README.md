@@ -81,7 +81,7 @@ Edit URL: https://docs.google.com/forms/d/.../edit
 
 ## Author
 
-**Minh Do** - [Zalo Community](https://zalo.me/g/igkywu632)
+**Minh Do** - [Facebook](https://facebook.com/dotanminh) | [Zalo Community](https://zalo.me/g/igkywu632)
 
 Built with [Google Antigravity](https://blog.google/technology/google-deepmind/gemini-model-policy-updates-jan-2025/)
 
