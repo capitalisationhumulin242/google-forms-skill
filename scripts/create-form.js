@@ -66,20 +66,32 @@ async function authorize(oAuth2Client) {
     access_type: 'offline', scope: SCOPES
   });
 
-  console.log('\n=== Authorization Required ===');
-  console.log('Open this URL in your browser:\n');
+  console.log('\n╔══════════════════════════════════════════╗');
+  console.log('║       Authorization Required              ║');
+  console.log('╚══════════════════════════════════════════╝\n');
+  console.log('1. Open this URL in your browser:\n');
   console.log(authUrl);
-  console.log('\nPaste the authorization code below.\n');
+  console.log('\n2. Select your Google account');
+  console.log('3. If you see "This app isn\'t verified":');
+  console.log('   - Click "Advanced"');
+  console.log('   - Click "Go to [app name] (unsafe)"');
+  console.log('4. Click "Continue" to grant permissions');
+  console.log('5. Your browser will show a "localhost" error page');
+  console.log('   THIS IS NORMAL! Look at the URL bar.');
+  console.log('6. Copy the value after "code=" and before "&scope"');
+  console.log('   Example: http://localhost/?code=4/0AfJoh...xyz&scope=...');
+  console.log('                                   ^^^^^^^^^^^^^^^^');
+  console.log('                                   Copy this part\n');
 
   const code = await new Promise((resolve) => {
     const rl = createInterface({ input: process.stdin, output: process.stdout });
-    rl.question('Code: ', (answer) => { rl.close(); resolve(answer.trim()); });
+    rl.question('Paste authorization code here: ', (answer) => { rl.close(); resolve(answer.trim()); });
   });
 
   const { tokens } = await oAuth2Client.getToken(code);
   oAuth2Client.setCredentials(tokens);
   writeFileSync(TOKEN_PATH, JSON.stringify(tokens, null, 2));
-  console.log('Token saved.\n');
+  console.log('Token saved. You won\'t need to authorize again.\n');
   return oAuth2Client;
 }
 

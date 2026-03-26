@@ -12,9 +12,10 @@ Create Google Forms from any content - files, pasted text, or topic descriptions
 Before first use, set up Google Cloud credentials:
 
 1. Create a project at [Google Cloud Console](https://console.cloud.google.com/)
-2. Enable **Google Forms API**
-3. Create **OAuth 2.0 Client ID** (Desktop app)
-4. Save the downloaded JSON as `credentials.json` in this skill's `scripts/` directory
+2. Configure **OAuth consent screen** (External, add test user email)
+3. Enable **Google Forms API**
+4. Create **OAuth 2.0 Client ID** (Desktop app)
+5. Save the downloaded JSON as `credentials.json` in this skill's **root** directory
 
 ## Workflow
 
@@ -88,7 +89,9 @@ Report to the user:
 
 | Error | Solution |
 |-------|---------|
-| `credentials.json not found` | Download OAuth credentials from Google Cloud Console and save in `scripts/` |
-| `401 Unauthorized` | Delete `token.json` in `scripts/` and re-run to re-authorize |
+| `credentials.json not found` | Download OAuth credentials from Google Cloud Console and save in the skill's **root** directory |
+| `401 Unauthorized` | Delete `token.json` in the skill's root directory and re-run to re-authorize |
 | `403 Forbidden` | Enable Google Forms API at Google Cloud Console |
 | `ENOENT: node_modules` | Run `npm install` in the `scripts/` directory |
+| `This app isn't verified` | Expected on first use. Click **Advanced** then **Go to [app name] (unsafe)** to proceed |
+| `localhost refused to connect` | Expected after authorization. Copy the `code=` value from the URL bar and paste it into the terminal |
